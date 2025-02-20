@@ -11,7 +11,7 @@ services:
     secrets:
       - cf-token
     env_file:
-      - /mnt/Docker/apps-data/traefik/.env
+      - .env
     networks:
       - traefik_net
     ports:
