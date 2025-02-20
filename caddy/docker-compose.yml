@@ -1,0 +1,30 @@
+services:
+  caddy:
+    container_name: caddy
+    build:
+      context: https://github.com/khoadang06/docker.git#main
+      dockerfile: caddy/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - /mnt/Docker/apps-data/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /mnt/Docker/apps-data/caddy/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - caddy_net
+    env_file:
+      - stack.env
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  caddy_net:
+    name: caddy_net
+    driver: bridge
+    external: false
