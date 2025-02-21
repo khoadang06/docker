@@ -14,6 +14,8 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 81:81
+      - 444:444
     # - 10000:10000 # optional
     # - 33073:33073 # optional
     environment:
