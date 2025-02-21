@@ -6,18 +6,17 @@ services:
       dockerfile: caddy/Dockerfile
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+      - "8080:80"
+      - "8443:443"
+      - "8443:443/udp"
     volumes:
-      - /mnt/Docker/apps-data/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - /mnt/Docker/apps-data/caddy/site:/srv
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/site:/srv
       - caddy_data:/data
       - caddy_config:/config
     networks:
       - caddy_net
-    env_file:
-      - stack.env
+    env_file: .env
 
 volumes:
   caddy_data:
